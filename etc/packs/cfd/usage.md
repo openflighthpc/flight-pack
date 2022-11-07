@@ -13,7 +13,7 @@ flight env activate spack@cfd
 Once activated, the included application commands are made available on your search path, e.g.:
 
 ```
-icoFoam --version
+icoFoam -help
 ```
 
 ## INFORMATION
