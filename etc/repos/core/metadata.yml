@@ -1,0 +1,5 @@
+---
+:description: Core
+:locations:
+- /mnt
+- https://alces-flight-packs.s3.eu-west-2.amazonaws.com/v1

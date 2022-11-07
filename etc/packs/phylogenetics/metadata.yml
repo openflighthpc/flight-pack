@@ -1,0 +1,6 @@
+---
+:description: Phylogenetics
+:author: Alces Flight Ltd
+:archives:
+- spack+phylogenetics.tar.bz2
+:repo: core

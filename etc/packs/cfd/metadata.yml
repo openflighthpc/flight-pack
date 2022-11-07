@@ -1,0 +1,6 @@
+---
+:description: CFD
+:author: Alces Flight Ltd
+:archives:
+- spack+cfd.tar.bz2
+:repo: core
