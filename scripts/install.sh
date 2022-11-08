@@ -8,7 +8,7 @@ pack_paths:
   - /opt/flight/var/lib/pack/packs
 repo_paths:
   - /opt/flight/var/lib/pack/repos
-log_path: var/log
+log_path: /opt/flight/var/log
 store_dir: /opt/flight/var/cache/pack
 EOF
 mkdir -p /opt/flight/var/log
