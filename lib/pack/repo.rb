@@ -70,7 +70,6 @@ module Pack
           Config.store_dir,
           "pack.#{Digest::MD5.hexdigest(repodata[:pack_data])}.tar.bz2"
         )
-        puts repodata.inspect
         if !Fetcher.fetch(
              repodata[:pack_data],
              pack_data_file,
