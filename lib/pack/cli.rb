@@ -107,5 +107,14 @@ EOF
 Install a pack.
 EOF
     end
+
+    command :repoadd do |c|
+      cli_syntax(c, 'URL')
+      c.summary = 'Configure a repo'
+      c.action Commands, :repo_add
+      c.description = <<EOF
+Configure a repo.
+EOF
+    end
   end
 end

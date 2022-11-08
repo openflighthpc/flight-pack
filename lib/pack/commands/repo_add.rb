@@ -1,4 +1,4 @@
-#==============================================================================
+# =============================================================================
 # Copyright (C) 2022-present Alces Flight Ltd.
 #
 # This file is part of Flight Pack.
@@ -23,11 +23,21 @@
 #
 # For more information on Flight Pack, please visit:
 # https://github.com/openflighthpc/flight-pack
-#==============================================================================
+# ==============================================================================
+require_relative '../command'
+require_relative '../repo'
+
 module Pack
-  UnknownPackError = Class.new(RuntimeError)
-  PackOperationError = Class.new(RuntimeError)
-  RepoOperationError = Class.new(RuntimeError)
-  RenderError = Class.new(RuntimeError)
-  InterruptedOperationError = Class.new(RuntimeError)
+  module Commands
+    class RepoAdd < Command
+      def run
+        url = args[0]
+        if repo = Repo.add(url)
+          puts "\nRepo #{Paint[repo.id, :cyan]} has been configured."
+        else
+          raise RepoOperationError, 'repo was not successfully configured'
+        end
+      end
+    end
+  end
 end

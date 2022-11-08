@@ -86,7 +86,7 @@ module Pack
           File.expand_path(
             data.fetch(
               :store_dir,
-              default: File.join(flight_root, 'var', 'lib', 'pack')
+              default: File.join(flight_root, 'var', 'cache', 'pack')
             ),
             Config.root
           )

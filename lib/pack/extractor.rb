@@ -24,10 +24,32 @@
 # For more information on Flight Pack, please visit:
 # https://github.com/openflighthpc/flight-pack
 #==============================================================================
+require_relative 'errors'
+
 module Pack
-  UnknownPackError = Class.new(RuntimeError)
-  PackOperationError = Class.new(RuntimeError)
-  RepoOperationError = Class.new(RuntimeError)
-  RenderError = Class.new(RuntimeError)
-  InterruptedOperationError = Class.new(RuntimeError)
+  module Extractor
+    class << self
+      def extract(archive, target, log_file:)
+        Signal.trap('INT','IGNORE')
+        rd, wr = IO.pipe
+        pid = fork {
+          rd.close
+          Signal.trap('INT','DEFAULT')
+          Kernel.exec(
+            'tar',
+            '-C',
+            target,
+            '-xvjf',
+            archive,
+            [:out, :err] => [log_file.nil? ? '/dev/null' : log_file, 'a+']
+          )
+        }
+        wr.close
+        _, status = Process.wait2(pid)
+        raise InterruptedOperationError, "Interrupt" if status.termsig == 2
+        Signal.trap('INT','DEFAULT')
+        status.success?
+      end
+    end
+  end
 end

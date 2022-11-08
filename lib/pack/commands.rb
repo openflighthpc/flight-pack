@@ -28,6 +28,7 @@ require_relative 'commands/avail'
 require_relative 'commands/download'
 require_relative 'commands/info'
 require_relative 'commands/install'
+require_relative 'commands/repo_add'
 
 module Pack
   module Commands

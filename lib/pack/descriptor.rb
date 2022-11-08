@@ -26,6 +26,7 @@
 #==============================================================================
 require_relative 'config'
 require_relative 'errors'
+require_relative 'fetcher'
 require_relative 'markdown_renderer'
 require_relative 'repo'
 
@@ -170,34 +171,14 @@ module Pack
           end
         else
           # network location
-          target = File.join(Config.store_dir, f)
-          Signal.trap('INT','IGNORE')
-          rd, wr = IO.pipe
-          log_file = File.join(
-            Config.log_path,
-            "#{[self.id, 'download'].compact.join('+')}.log"
-          )
-          pid = fork {
-            rd.close
-            Signal.trap('INT','DEFAULT')
-            Kernel.exec(
-              'wget',
-              File.join(l, CGI.escape(f)),
-              '-t', '1',
-              '-O',"#{target}.alcesdownload",
-              [:out, :err] => [log_file,'a+']
+          Fetcher.fetch(
+            File.join(l, CGI.escape(f)),
+            File.join(Config.store_dir, f),
+            log_file: File.join(
+              Config.log_path,
+              "#{[self.id, 'download'].compact.join('+')}.log"
             )
-          }
-          wr.close
-          _, status = Process.wait2(pid)
-          raise InterruptedOperationError, "Interrupt" if status.termsig == 2
-          Signal.trap('INT','DEFAULT')
-          if !status.success?
-            false
-          else
-            FileUtils.mv("#{target}.alcesdownload",target)
-            true
-          end
+          )
         end
       end
       !!fetched
