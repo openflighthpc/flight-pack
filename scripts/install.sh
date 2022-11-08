@@ -1,7 +1,7 @@
 #!/bin/bash
 cd /opt/flight/opt/pack
 /opt/flight/bin/bundle install --path=vendor
-cp libexec/opt/flight/libexec/commands/pack /opt/flight/libexec/commands/pack
+cp dist/opt/flight/libexec/commands/pack /opt/flight/libexec/commands/pack
 cat <<EOF > /opt/flight/opt/pack/etc/config.yml
 ---
 pack_paths:
