@@ -1,6 +1,0 @@
----
-:description: Chemistry
-:author: Alces Flight Ltd
-:archives:
-- spack+chemistry.tar.bz2
-:repo: core

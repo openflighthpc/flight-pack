@@ -1,6 +1,0 @@
----
-:description: Machine Learning
-:author: Alces Flight Ltd
-:archives:
-- conda+ml.tar.bz2
-:repo: core

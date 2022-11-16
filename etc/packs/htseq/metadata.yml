@@ -1,6 +1,0 @@
----
-:description: High-Throughput Sequencing
-:author: Alces Flight Ltd
-:archives:
-- spack+htseq.tar.bz2
-:repo: core
