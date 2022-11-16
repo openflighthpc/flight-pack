@@ -4,4 +4,4 @@ pack_paths:
 repo_paths:
 - etc/repos
 log_path: var/log
-store_dir: /opt/flight/var/cache/pack
+store_dir: var/cache
