@@ -171,6 +171,7 @@ module Pack
           end
         else
           # network location
+          FileUtils.mkdir_p(Config.log_path)
           Fetcher.fetch(
             File.join(l, CGI.escape(f)),
             File.join(Config.store_dir, f),
@@ -285,6 +286,7 @@ EOF
           run_fork do |wr|
             wr.close_on_exec = false
             setup_bash_funcs(ENV, wr.fileno)
+            FileUtils.mkdir_p(Config.log_path)
             log_file = File.join(
               Config.log_path,
               "#{[self.id, script].compact.join('+')}.log"

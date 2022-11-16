@@ -91,6 +91,12 @@ Making changes to the default configuration is optional and can be achieved by c
 
 ## Operation
 
+Before use a repository should be added to Flight Pack using the `repoadd` command, e.g.:
+
+```
+flight pack repoadd https://alces-flight-packs.s3.eu-west-2.amazonaws.com/v1/core.yml
+```
+
 See the `help` command for further details and information about commands.
 
 # Contributing

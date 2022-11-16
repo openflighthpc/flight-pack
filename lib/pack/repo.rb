@@ -48,6 +48,7 @@ module Pack
       end
 
       def add(url)
+        FileUtils.mkdir_p(Config.log_path)
         repo_log_file = File.join(
           Config.log_path,
           "repo.#{Digest::MD5.hexdigest(url)}.log"
